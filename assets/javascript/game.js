@@ -16,19 +16,19 @@ $(document).ready(function () {
         return {
             c1: {
                 points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: ""
+                imageUrl: "assets/images/C1.jpg"
             },
             c2: {
                 points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: ""
+                imageUrl: "assets/images/c2.jpg"
             },
             c3: {
                 points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: ""
+                imageUrl: "assets/images/c3.jpg"
             },
             c4: {
                 points: Math.floor(Math.random() * 12) + 1,
-                imageUrl: ""
+                imageUrl: "assets/images/c4.jpg"
             }
         };
     }
@@ -48,7 +48,7 @@ $(document).ready(function () {
         start();
         renderMNum();
     }
-    else if (didUWin===flase){
+    else if (didUWin===false){
         $("#win_area").append($("<p>").text("You Lost :-("));
         start();
         renderMNum();
@@ -63,15 +63,15 @@ $(document).ready(function () {
     $("#win-area").append(lSpan);
     }
     function renderC(){
-        for(var key in crystal){
+        for(var key in crystals){
             var crystalDiv = $("<div class='crystals-button' data-name='"+ key+ "'>");
-            var cImange = $("<img alt='image' class='crystal-img'>").attr("src",crystal[key].imageUrl);
+            var cImange = $("<img alt='image' class='crystal-img'>").attr("src",crystals[key].imageUrl);
             crystalDiv.append(cImange);
             $("#crystal-area").append(crystalDiv);
         }
     }
     function matchNumUpdate(crystal){
-        matchingScore +=crystal[crystal.attr("data-name")].points;
+        matchingScore += crystals[crystal.attr("data-name")].points;
     }
     function renderMNum(){
         var scoreDiv = $("<div id='score-number'>").text(matchingScore);
