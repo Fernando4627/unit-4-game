@@ -11,10 +11,10 @@ $(document).ready(function () {
     var matchingScore = 0;
     var lost = 0;
     var wins = 0;
-    var crystal;
+    var crystals;
     function randomCrystal() {
         return {
-            c1: {
+            C1: {
                 points: Math.floor(Math.random() * 12) + 1,
                 imageUrl: "assets/images/C1.jpg"
             },
@@ -35,65 +35,65 @@ $(document).ready(function () {
     function NumGen() {
         return Math.floor(Math.random() * 102) + 19;
     }
-    function start(){
+    function start() {
         matchingScore = 0;
-        crystal = randomCrystal();
+        crystals = randomCrystal();
         randomScore = NumGen()
         $("#random-area").text(randomScore);
     }
-    function winner(didUWin){
+    function winner(didUWin) {
         $("#win-area").empty();
-        if(didUWin === true){
-        $("#win_area").append($("<p>").text("You Win!!"));
-        start();
-        renderMNum();
+        if (didUWin === true) {
+            $("#win_area").append($("<p>").text("You Win!!"));
+            start();
+            renderMNum();
+        }
+        else if (didUWin === false) {
+            $("#win_area").append($("<p>").text("You Lost :-("));
+            start();
+            renderMNum();
+        }
+        var wSpan = $("<span>").text(wins);
+        var lSpan = $("<span>").text(lost);
+        var pWins = $("<p>").text("Wins: ");
+        var pLosses = $("<p>").text("Losses: ");
+        pWins.append(wSpan);
+        pLosses.append(lSpan);
+        $("#win-area").append(pWins);
+        $("#win-area").append(lSpan);
     }
-    else if (didUWin===false){
-        $("#win_area").append($("<p>").text("You Lost :-("));
-        start();
-        renderMNum();
-    }
-    var wSpan = $("<span>").text(wins);
-    var lSpan = $("<span>").text(lost);
-    var pWins = $("<p>").text("Wins: ");
-    var pLosses = $("<p>").text("Losses: ");
-    pWins.append(wSpan);
-    pLosses.append(lSpan);
-    $("#win-area").append(pWins);
-    $("#win-area").append(lSpan);
-    }
-    function renderC(){
-        for(var key in crystals){
-            var crystalDiv = $("<div class='crystals-button' data-name='"+ key+ "'>");
-            var cImange = $("<img alt='image' class='crystal-img'>").attr("src",crystals[key].imageUrl);
+    function renderC() {
+        for (var key in crystals) {
+            var crystalDiv = $("<div class='crystals-button' data-name='" + key + "'>");
+            var cImange = $("<img alt='image' class='crystal-img'>").attr("src", crystals[key].imageUrl);
             crystalDiv.append(cImange);
             $("#crystal-area").append(crystalDiv);
         }
     }
-    function matchNumUpdate(crystal){
+    function matchNumUpdate(crystal) {
         matchingScore += crystals[crystal.attr("data-name")].points;
     }
-    function renderMNum(){
+    function renderMNum() {
         var scoreDiv = $("<div id='score-number'>").text(matchingScore);
         $("#score-area").html();
         $("#score-area").html(scoreDiv);
     }
     start();
     winner();
-   renderC();
-   renderMNum();
-   $(".crystals-button").on("click",function(event){
-       matchNumUpdate($(this));
-       renderMNum();
-       if (matchingScore === randomScore){
-           wins++;
-           start();
-           winner(true);
-       }
-       else if (matchingScore > randomScore){
-           lost++;
-           start();
-           winner(false);
-       }
-   });
+    renderC();
+    renderMNum();
+    $(".crystals-button").on("click", function (event) {
+        matchNumUpdate($(this));
+        renderMNum();
+        if (matchingScore === randomScore) {
+            wins++;
+            start();
+            winner(true);
+        }
+        else if (matchingScore > randomScore) {
+            lost++;
+            start();
+            winner(false);
+        }
+    });
 });

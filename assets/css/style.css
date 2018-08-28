@@ -72,4 +72,7 @@
     margin-left: 10px;
     background-color: aqua;
   }
-  
+  body{
+    background-image: url(../images/what-the-hex-dark.png);
+    justify-content: center;
+  }
