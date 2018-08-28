@@ -75,4 +75,6 @@
   body{
     background-image: url(../images/what-the-hex-dark.png);
     justify-content: center;
+    margin-left: 50px;
+  align-content: center;
   }

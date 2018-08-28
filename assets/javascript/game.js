@@ -60,7 +60,7 @@ $(document).ready(function () {
         pWins.append(wSpan);
         pLosses.append(lSpan);
         $("#win-area").append(pWins);
-        $("#win-area").append(lSpan);
+        $("#win-area").append(pLosses);
     }
     function renderC() {
         for (var key in crystals) {
